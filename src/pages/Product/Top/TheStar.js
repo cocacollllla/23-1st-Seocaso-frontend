@@ -10,7 +10,7 @@ class TheStar extends React.Component {
         className="emptyStar"
         index={index}
         onMouseMove={hoverStar}
-        OnClick={clickStar}
+        onClick={clickStar}
       >
         {index - rating === 0.5 && <div className="halfStar" index={index} />}
         {index <= rating && <div className="fullStar" index={index} />}

@@ -25,15 +25,23 @@ class Search extends React.Component {
 
   render() {
     const { searchResult } = this.state;
+    console.log(searchResult);
     return (
       <div className="search-result-box">
         <SearchList
           title="카페명 포함 결과"
           results={searchResult.cafe_name_results}
+          // id={
+          //   searchResult.cafe_name_results && searchResult.cafe_name_results.id
+          // }
         />
         <SearchList
           title="주소 포함 결과"
           results={searchResult.address_search_results}
+          // id={
+          //   searchResult.address_search_results &&
+          //   searchResult.address_search_results.id
+          // }
         />
       </div>
     );

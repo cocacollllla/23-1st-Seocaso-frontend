@@ -1,4 +1,5 @@
 import React from 'react';
+import { API } from '../../config';
 import Ranking from './Ranking/Ranking';
 import './Main.scss';
 
@@ -12,7 +13,7 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://10.58.2.113:8000/cafes?ordering=high_rating')
+    fetch(`${API.RAITING_STAR}`)
       .then(response => response.json())
       .then(data => {
         this.setState({
@@ -20,7 +21,7 @@ class Main extends React.Component {
         });
       });
 
-    fetch('http://10.58.2.113:8000/cafes?ordering=high_count')
+    fetch(`${API.RAITING_REVIEW}`)
       .then(response => response.json())
       .then(data => {
         this.setState({
@@ -34,8 +35,8 @@ class Main extends React.Component {
     return (
       <div className="main">
         <section>
-          <Ranking type="star" title="별점 순 ⭐" ranking={starRanking} />
-          <Ranking type="review" title="리뷰 순 💬" ranking={reviewRanking} />
+          <Ranking type="star" title="별점 순" ranking={starRanking} />
+          <Ranking type="review" title="리뷰 순" ranking={reviewRanking} />
         </section>
       </div>
     );

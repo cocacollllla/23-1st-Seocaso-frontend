@@ -25,16 +25,8 @@ class CommentCard extends React.Component {
   };
 
   render() {
-    console.log(this.state.commentLike);
-    console.log(this.props.commentList.review_like);
-    const {
-      profile_image,
-      nickname,
-      star_rating,
-      content,
-      review_like,
-      comment_on_review,
-    } = this.props.commentList;
+    const { nickname, star_rating, content, review_like, comment_on_review } =
+      this.props.commentList;
     return (
       <li className="comment-card">
         <div className="card-top">
@@ -42,7 +34,7 @@ class CommentCard extends React.Component {
             <div className="img-container">
               <img
                 alt="*"
-                src={profile_image}
+                src="https://ca.slack-edge.com/TH0U6FBTN-U0235ED6MGR-dc4efcf9256d-512"
                 onError={e => (e.target.style.display = 'none')}
                 className="top-face-img"
               />

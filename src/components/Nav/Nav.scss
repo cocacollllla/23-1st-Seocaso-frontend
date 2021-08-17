@@ -5,7 +5,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 9;
+  z-index: 999;
   background-color: #fff;
   border-bottom: 1px solid #ebebeb;
 
@@ -18,6 +18,16 @@
 
     img {
       width: 150px;
+      cursor: pointer;
+    }
+
+    .span {
+      position: absolute;
+      bottom: 13px;
+      left: 230px;
+      font-size: 5px;
+      color: $color-main;
+      opacity: 0.7;
     }
 
     .search {
@@ -42,8 +52,6 @@
       }
 
       .not-login {
-        // display: none;
-
         .nav-button {
           margin-left: 20px;
           padding: 6px 9px;
@@ -58,8 +66,35 @@
       }
 
       .login {
-        display: none;
         @include flex(row, space-between, center);
+
+        .hojun {
+          padding: 10px;
+          margin-right: 10px;
+          font-weight: bold;
+          color: #fafafa;
+          background: linear-gradient(
+            -45deg,
+            #ee7752,
+            #e73c7e,
+            #23a6d5,
+            #23d5ab
+          );
+          background-size: 400% 400%;
+          animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
 
         div:first-child {
           padding: 0 20px;

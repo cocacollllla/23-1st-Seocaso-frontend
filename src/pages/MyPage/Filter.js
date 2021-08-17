@@ -1,12 +1,10 @@
 import React from 'react';
 import './Filter.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 class Filter extends React.Component {
   shootRate = param => {
     this.props.postRate(param);
-    this.props.ratedFetch();
+    // this.props.ratedFetch();
     this.props.modal();
   };
 
@@ -14,11 +12,6 @@ class Filter extends React.Component {
     return (
       <div className="modal">
         <div className="container">
-          <FontAwesomeIcon
-            icon={faTimes}
-            onClick={this.props.modal}
-            className="xmark"
-          />
           <header>평가한 카페</header>
 
           <div>

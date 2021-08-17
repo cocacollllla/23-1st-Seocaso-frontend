@@ -35,6 +35,13 @@ class Stars extends React.Component {
     return score;
   };
 
+  alertLogin = e => {
+    if (!localStorage.getItem('TOKEN')) {
+      alert('로그인 해주세요');
+    }
+    this.props.show(1);
+  };
+
   clickStar = e => {
     let score = this.hoverStar(e);
     this.props.postStar(score);
@@ -45,8 +52,10 @@ class Stars extends React.Component {
     return (
       <>
         <div className="rate-container">
-          <div className="rate-words">평가하기</div>
-          <div className="rate-stars">
+          <div className="rate-words">
+            {this.state.rating > 0 ? '별이 반짝반짝 빛나요' : '평가해주세요'}
+          </div>
+          <div className="rate-stars" onClick={this.alertLogin}>
             {MAP.map(index => (
               <TheStar
                 key={index}

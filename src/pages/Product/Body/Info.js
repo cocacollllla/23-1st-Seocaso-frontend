@@ -6,19 +6,8 @@ class Info extends React.Component {
   constructor() {
     super();
     this.state = {
-      infoList: [],
       moreInfo: false,
     };
-  }
-
-  componentDidMount() {
-    fetch('./data/Mockdata.json')
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          infoList: data.informations[0],
-        });
-      });
   }
 
   forMore = e => {
@@ -34,8 +23,8 @@ class Info extends React.Component {
   };
 
   render() {
-    const { infoList, moreInfo } = this.state;
-    console.log(infoList);
+    const { moreInfo } = this.state;
+    const { infoList } = this.props;
     return (
       <section className="main-top">
         <header className="about-cafe">

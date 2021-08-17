@@ -13,6 +13,8 @@ class Nav extends React.Component {
       searchInput: '',
       loginOnModal: false,
       signupOnModal: false,
+      profile: [],
+      nickname: '',
     };
   }
 
@@ -24,11 +26,23 @@ class Nav extends React.Component {
 
   enterInsertValue = e => {
     if (e.key === 'Enter') {
+      this.setState({
+        searchInput: e.target.value,
+      });
       this.props.history.push({
-        pathname: '/Search',
+        pathname: `/Search/${this.state.searchInput}`,
         state: { keyword: this.state.searchInput },
       });
+      window.location.reload();
     }
+  };
+
+  goToMypage = () => {
+    this.props.history.push('/Mypage');
+  };
+
+  goToMain = () => {
+    this.props.history.push('/Main');
   };
 
   hadleLoginModal = () => {
@@ -50,13 +64,23 @@ class Nav extends React.Component {
     });
   };
 
+  tokenRemove = () => {
+    this.props.history.push('/main');
+    localStorage.removeItem('TOKEN');
+  };
+
   render() {
     const { searchInput } = this.state;
     const { handleChange, enterInsertValue } = this;
     return (
       <nav className="nav">
         <div className="nav-wrapper">
-          <img alt="서카소 로고" src="../images/seocaso_logo.png" />
+          <img
+            alt="서카소 로고"
+            src="../../images/seocaso_logo.png"
+            onClick={this.goToMain}
+          />
+          <span className="span">서울의 카페를 소개합니다</span>
           <div className="search">
             <div className="search-box">
               <FontAwesomeIcon icon={faSearch} className="search-icon" />
@@ -68,38 +92,43 @@ class Nav extends React.Component {
                 onKeyPress={enterInsertValue}
               />
             </div>
-            {/* merge후 로그인시 .login / 비로그인시 .not-login 보이도록 하기*/}
-            <div className="not-login">
-              <button className="nav-button" onClick={this.hadleLoginModal}>
-                로그인
-              </button>
-              {this.state.loginOnModal && (
-                <LoginModal
-                  checkLogin={this.hadleLoginModal}
-                  checkSignup={this.hadleSignupModal}
-                  checkonSign={this.hadleSignupLoginModal}
-                />
-              )}
-              <button
-                className="nav-button signup-button "
-                onClick={this.hadleSignupModal}
-              >
-                회원가입
-              </button>
-              {this.state.signupOnModal && (
-                <SignupModal
-                  checkLogin={this.hadleLoginModal}
-                  checkSignup={this.hadleSignupModal}
-                  checkonSign={this.hadleSignupLoginModal}
-                />
-              )}
-            </div>
-            <div className="login">
-              <div>다슬님</div>
-              <div>
-                <img alt="프로필사진" src="../../images/profilephoto.png" />
+            {localStorage.getItem('TOKEN') ? (
+              <div className="login">
+                <div className="nav-button" onClick={this.tokenRemove}>
+                  로그아웃
+                </div>
+                <div className="hojun">우주천재_최혜림</div>
+                <div onClick={this.goToMypage}>
+                  <img alt="프로필사진" src="../../images/profilephoto.png" />
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="not-login">
+                <button className="nav-button" onClick={this.hadleLoginModal}>
+                  로그인
+                </button>
+                {this.state.loginOnModal && (
+                  <LoginModal
+                    checkLogin={this.hadleLoginModal}
+                    checkSignup={this.hadleSignupModal}
+                    checkonSign={this.hadleSignupLoginModal}
+                  />
+                )}
+                <button
+                  className="nav-button signup-button "
+                  onClick={this.hadleSignupModal}
+                >
+                  회원가입
+                </button>
+                {this.state.signupOnModal && (
+                  <SignupModal
+                    checkLogin={this.hadleLoginModal}
+                    checkSignup={this.hadleSignupModal}
+                    checkonSign={this.hadleSignupLoginModal}
+                  />
+                )}
+              </div>
+            )}
           </div>
         </div>
       </nav>

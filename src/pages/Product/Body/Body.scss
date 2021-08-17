@@ -4,6 +4,14 @@
   padding: 15px 0 48px 0;
   background-color: $color-bg;
 
+  .review-styling {
+    position: relative;
+    width: 990px;
+    height: 82px;
+    left: 50%;
+    margin-left: -495px;
+  }
+
   div {
     .body-container {
       @include flex(row, center, flex-start);

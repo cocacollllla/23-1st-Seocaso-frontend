@@ -16,11 +16,15 @@
 // ```
 
 // 위의 경우, 백엔드 IP 가 바뀔 때 `config.js` 에서 IP 만 바꾸어주면 모든 API 가 새로운 IP 에 따라서 변경됩니다. 그렇기 때문에 일일이 fetch 함수를 찾아 API 를 수정해줄 필요가 없습니다.
-const BASE_URL = 'http://10.58.2.113:8000';
+export const BASE_URL = 'http://10.58.2.102:8000';
 export const API = {
   RAITING_COUNT: `${BASE_URL}/cafes/rating-count`, // footer 평점 총 카운트
   RAITING_STAR: `${BASE_URL}/cafes?ordering=high_rating`, // 메인 carousel 별점순
   RAITING_REVIEW: `${BASE_URL}/cafes?ordering=high_count`, // 메인 carousel 리뷰순
   TOKEN_PROFILE: `${BASE_URL}/users/signin`, // 로그인시 토큰, 프로필 이미지
-  SEARCH_RESULT: `${BASE_URL}/cafes?q=`, // 검색결과 페이지
+  CAFE_INFO: `${BASE_URL}/cafes/`, // 카페 정보
+  CAFE_RATE: `${BASE_URL}/cafe/`, // 카페 별점
+  SEARCH_RESULT: `${BASE_URL}/cafes/search?q=`, // 검색결과 페이지
+  SIGNUP: `${BASE_URL}/users/signup`, // 검색결과 페이지
+  SIGNIN: `${BASE_URL}/users/signin`, // 검색결과 페이지
 };

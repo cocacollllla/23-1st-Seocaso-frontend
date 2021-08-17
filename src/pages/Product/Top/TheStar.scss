@@ -9,7 +9,7 @@
   .halfStar {
     @include wh(45px, 45px);
     background: url('../../../assets/images/TheHalfStar.svg');
-    z-index: 999;
+    z-index: 9;
     position: absolute;
     top: 0;
     left: 0;
@@ -17,7 +17,7 @@
   .fullStar {
     @include wh(45px, 45px);
     background: url('../../../assets/images/YellowStar.svg');
-    z-index: 999;
+    z-index: 9;
     position: absolute;
     top: 0;
     left: 0;

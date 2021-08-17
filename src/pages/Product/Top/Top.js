@@ -1,5 +1,7 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
+import { API } from '../../../config';
 import LikeBtn from './LikeBtn';
 import Stars from './Stars';
 
@@ -10,32 +12,48 @@ class Top extends React.Component {
     super();
     this.state = {
       infoList: [],
+      cafeRate: 0,
+      score: 0,
     };
   }
-
   componentDidMount() {
-    fetch('./data/Mockdata.json')
+    fetch(`${API.CAFE_RATE}${this.props.match.params.id}/star-rating`)
       .then(res => res.json())
       .then(data => {
         this.setState({
-          infoList: data.informations[0],
+          cafeRate: data.result,
+          score: data.score,
         });
       });
   }
 
+  postStar = star => {
+    fetch(`${API.CAFE_RATE}${this.props.match.params.id}/star-rating`, {
+      method: 'POST',
+      headers: {
+        Authorization: localStorage.getItem('TOKEN'),
+      },
+      body: JSON.stringify({
+        score: star,
+      }),
+    });
+    console.log(this.state.score);
+  };
+
   render() {
-    const { infoList } = this.state;
-    console.log(infoList.cafe_image_url);
+    const { cafeRate } = this.state;
+    const { infoList } = this.props;
+
     return (
       <>
-        <section className="top-top">
+        <section className="top-top-top">
           <div className="top-backimg">
             <div className="backimg-container">
               <div className="backimg-left"></div>
               <div
                 className="backimg"
                 style={{
-                  background: `no-repeat center/100% url(${infoList.cafe_image})`,
+                  background: `no-repeat center/100% url(${infoList.background_image})`,
                 }}
               >
                 <div className="backimg-shadow-left"></div>
@@ -50,7 +68,7 @@ class Top extends React.Component {
                   <img
                     alt="poster"
                     className="poster"
-                    src={infoList.cafe_image}
+                    src={infoList.cafe_image_url}
                   />
                 </div>
                 <ul className="limit-info">
@@ -58,7 +76,7 @@ class Top extends React.Component {
                     카페 순위•<em>{infoList.review_ranking}</em>
                   </li>
                   <li className="limit-info-list">
-                    평점 순위•<em>{infoList.review_ranking}</em>
+                    평점 순위•<em>{infoList.star_rating_ranking}</em>
                   </li>
                 </ul>
               </div>
@@ -69,11 +87,15 @@ class Top extends React.Component {
               <h1 className="cafe-name">{infoList.name}</h1>
               <div className="cafe-category">{infoList.business_hour}</div>
               <div className="cafe-rate">
-                평균 ★ {infoList.rate} ({infoList.likes})
+                평균 ★ {cafeRate.average} ({cafeRate.total_count})
               </div>
               <div className="shop-btn-container">
                 <LikeBtn />
-                <Stars score={0} />
+                <Stars
+                  postStar={this.postStar}
+                  score={this.state.score}
+                  show={this.props.show}
+                />
               </div>
             </div>
           </div>
@@ -83,4 +105,4 @@ class Top extends React.Component {
   }
 }
 
-export default Top;
+export default withRouter(Top);

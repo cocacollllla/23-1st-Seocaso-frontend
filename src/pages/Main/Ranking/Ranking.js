@@ -33,15 +33,16 @@ class Ranking extends React.Component {
               return (
                 <RankList
                   key={rank.id}
+                  id={rank.id}
                   image={rank.image}
                   name={rank.name}
                   address={rank.address}
                 >
                   {this.props.type === 'star' && (
-                    <div>평균★{rank.cafe_avg_rating}</div>
+                    <div>평균★{rank.avg_rating}</div>
                   )}
                   {this.props.type === 'review' && (
-                    <div>리뷰★{rank.cafe_review_counts}</div>
+                    <div>평균★{rank.avg_rating}</div>
                   )}
                 </RankList>
               );

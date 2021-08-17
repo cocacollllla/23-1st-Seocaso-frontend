@@ -61,7 +61,7 @@ class Review extends React.Component {
           <div className="review-content">
             {writeContent}
             <div className="delete" onClick={this.removeContent}>
-              🙅🏻‍♂️
+              𝗫
             </div>
           </div>
         )}

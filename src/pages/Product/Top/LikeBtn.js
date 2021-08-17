@@ -14,10 +14,14 @@ class LikeBtn extends React.Component {
   }
 
   addLike = () => {
-    let count = this.state.likes + 1;
-    this.setState({
-      likes: count,
-    });
+    if (localStorage.getItem('TOKEN')) {
+      let count = this.state.likes + 1;
+      this.setState({
+        likes: count,
+      });
+    } else {
+      alert('로그인 해주세요');
+    }
   };
 
   minusLike = () => {

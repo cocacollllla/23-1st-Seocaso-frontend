@@ -1,7 +1,7 @@
 import React from 'react';
-import './SignupModal.scss';
-import LoginModal from '../Login/LoginModal';
 import { withRouter } from 'react-router-dom';
+import { API } from '../../config';
+import './SignupModal.scss';
 
 class SignupModal extends React.Component {
   constructor() {
@@ -13,9 +13,15 @@ class SignupModal extends React.Component {
     };
   }
 
+  handleEnter = e => {
+    if (e.key === 'Enter') {
+      this.handleFetch(e);
+    }
+  };
+
   handleFetch = e => {
     e.preventDefault();
-    fetch('http://10.58.0.59:8000/users/signin', {
+    fetch(`${API.SIGNUP}`, {
       method: 'POST',
       body: JSON.stringify({
         email: this.state.email,
@@ -25,7 +31,7 @@ class SignupModal extends React.Component {
     })
       .then(response => response.json())
       .then(result => console.log('결과: ', result));
-    this.props.history.push('/Main');
+    this.props.checkSignup();
   };
 
   goToMain = () => {
@@ -44,7 +50,11 @@ class SignupModal extends React.Component {
         <div className="signup-modal" onClick={this.props.checkSignup}>
           <div className="signup-box" onClick={e => e.stopPropagation()}>
             <header>
-              <img src="/images/seocaso_logo.png" className="header-image" />
+              <img
+                alt="header"
+                src="/images/seocaso_logo.png"
+                className="header-image"
+              />
             </header>
             <h2 className="title">회원가입</h2>
             <section>
@@ -75,6 +85,7 @@ class SignupModal extends React.Component {
                         className="input-pw"
                         placeholder="비밀번호"
                         onChange={this.handleInput}
+                        onKeyDown={this.handleEnter}
                         name="password"
                       />
                     </div>

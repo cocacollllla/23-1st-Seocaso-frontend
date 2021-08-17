@@ -3,34 +3,6 @@ import React from 'react';
 import './Graph.scss';
 
 class Graph extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      info: {},
-    };
-  }
-
-  componentDidMount() {
-    fetch('./data/Mockdata.json')
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          info: data.informations[0],
-        });
-      });
-  }
-
-  /* 그래프 기능구현
-    방법 1 
-    ㄴ 맵함수를 통해 객체의 값에 85px를 곱해서 height를 주고 children을 통해서 스팬을 넣는다
-    방법 2
-    ㄴ 각 파일들이 있는 상태에서 객체의 키값이 맞는 클래스네임을 지정해서 들어오는 값이 변경될 때 마다 변경한다.
-    ㄴ switch를 통해 일일이 지정한다. 
-    조건 1 : 데이터를 85px : 100% 기준으로 곱해서 height를 변경시킨다.
-    - 데이터 : data.evaluation_graphs[0] 객체에 0.5 ~ 5까지 들어있음
-    - 
-  */
-
   graphList = () => {
     let valueArry = Object.values(this.state.info.evaluation_graphs);
     let max = valueArry.reduce((prev, cur) => {
@@ -49,7 +21,7 @@ class Graph extends React.Component {
   };
 
   render() {
-    const { info } = this.state;
+    const { info } = this.props;
 
     let max =
       info.id &&
@@ -70,9 +42,11 @@ class Graph extends React.Component {
             <h2 className="span-info2">별점 그래프</h2>
             <div className="header-right">
               <div className="average-rate">
-                평균 ★{info.star_rating_ranking}
+                평균 ★{this.props.graph.average}
               </div>
-              <div className="average-people">(130명)</div>
+              <div className="average-people">
+                {this.props.graph.total_count}명
+              </div>
             </div>
           </div>
           <div className="graph-container">

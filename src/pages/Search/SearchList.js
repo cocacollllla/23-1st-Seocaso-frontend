@@ -1,6 +1,12 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+import SearchResult from './SearchResult';
 
 class SearchList extends React.Component {
+  goToCafe = () => {
+    this.props.history.push(`../Product/${this.props.id}`);
+  };
+
   render() {
     const { title, results } = this.props;
     return (
@@ -11,13 +17,15 @@ class SearchList extends React.Component {
         )}
         <ul className="search-result-list">
           {results &&
-            results.map(keyword => {
+            results.map(el => {
               return (
-                <li key={keyword.id}>
-                  <img alt="검색결과" src={keyword.image} />
-                  <div>{keyword.name}</div>
-                  <div>{keyword.address}</div>
-                </li>
+                <SearchResult
+                  id={el.id}
+                  key={el.id}
+                  image={el.image}
+                  address={el.address}
+                  name={el.name}
+                />
               );
             })}
         </ul>
@@ -26,4 +34,4 @@ class SearchList extends React.Component {
   }
 }
 
-export default SearchList;
+export default withRouter(SearchList);

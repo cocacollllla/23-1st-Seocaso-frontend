@@ -14,19 +14,8 @@ class Comment extends React.Component {
   constructor() {
     super();
     this.state = {
-      commentList: [],
       count: 0,
     };
-  }
-
-  componentDidMount() {
-    fetch('./data/Mockdata.json')
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          commentList: data.reviews,
-        });
-      });
   }
 
   ClickRight = () => {
@@ -38,18 +27,20 @@ class Comment extends React.Component {
   };
 
   render() {
-    console.log(this.state.commentList);
-    const { commentList, count } = this.state;
+    const { commentList } = this.props;
+    const { count } = this.state;
+    const reviewCounted = commentList.length;
     let marginLeft = count * -300;
     let marginRight = count * -300;
     let rightEnd = commentList.length * -300 + 900;
+
     return (
       <section className="comment-section">
         <div className="comment-container">
           <header className="comment-header">
             <div className="comment-left">
               <h2 className="comment-name">리뷰</h2>
-              <div className="comment-number">1500+</div>
+              <div className="comment-number">{reviewCounted}개</div>
             </div>
           </header>
           <div className="card-container">
@@ -79,7 +70,7 @@ class Comment extends React.Component {
                 }}
               />
               {commentList.map(commentList => (
-                <CommentCard commentList={commentList} />
+                <CommentCard commentList={commentList} key={commentList.id} />
               ))}
             </ul>
           </div>

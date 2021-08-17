@@ -1,8 +1,7 @@
 # 서카소 (왓챠피디아 클론코딩)
-
 ![seocaso_logo](https://user-images.githubusercontent.com/79290170/129485664-93e1dafe-f31e-4baa-8ea8-eab834306aaa.png)
 
-[![서카소 프로젝트]영상 링크](https://youtube.com/V38oqwMjnoI)
+영상 링크 : https://youtu.be/V38oqwMjnoI
 
 ## Seocaso Project Teammate
 

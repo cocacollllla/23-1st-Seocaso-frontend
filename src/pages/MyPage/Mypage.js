@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Evaluation from './Evaluation';
 import Filter from './Filter';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { API } from '../../config';
 
 class Mypage extends React.Component {
   goToMain = () => {
@@ -46,7 +47,7 @@ class Mypage extends React.Component {
   }
 
   likedFetch = () => {
-    fetch(`http://10.58.0.59:8000/cafes/user/1?category=liked${this.state.url}`)
+    fetch(`${API.CAFE_INFO}user/1?category=liked${this.state.url}`)
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -56,7 +57,7 @@ class Mypage extends React.Component {
   };
 
   ratedFetch = () => {
-    fetch(`http://10.58.0.59:8000/cafes/user/1?category=rated${this.state.url}`)
+    fetch(`${API.CAFE_INFO}user/1?category=rated${this.state.url}`)
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -86,6 +87,19 @@ class Mypage extends React.Component {
       },
       () => {
         this.ratedFetch();
+      }
+    );
+  };
+
+  postlike = target => {
+    this.setState(
+      {
+        url: target,
+        rateCount: 0,
+        likeCount: 0,
+      },
+      () => {
+        this.likedFetch();
       }
     );
   };
@@ -126,8 +140,13 @@ class Mypage extends React.Component {
             </div>
             <div className="top-info-container">
               <div className="top-info">
-                <h1 className="cafe-name">여기에 유저ID</h1>
-                <div className="cafe-rate">오늘 당장 위코드를 시작하세요.</div>
+                <h1 className="cafe-name">우주천재_최혜림</h1>
+                <div className="cafe-rate">
+                  <strong>
+                    오늘 당장 위코드를 시작하세요!!! 천하제일 백엔드 천재는 나!
+                    혜림님이다!!
+                  </strong>
+                </div>
               </div>
             </div>
           </section>
@@ -160,6 +179,7 @@ class Mypage extends React.Component {
                     {this.state.rateList.map(el => {
                       return (
                         <Evaluation
+                          id={el.id}
                           key={el.id}
                           image={el.image}
                           cafename={el.name}
@@ -203,7 +223,7 @@ class Mypage extends React.Component {
                   <Filter
                     type="like"
                     modal={this.hadleModal}
-                    postRate={this.postRate}
+                    postRate={this.postlike}
                     ratedFetch={this.likedFetch}
                   />
                 )}
@@ -218,6 +238,7 @@ class Mypage extends React.Component {
                     {this.state.likeList.map(el => {
                       return (
                         <Evaluation
+                          id={el.id}
                           key={el.id}
                           image={el.image}
                           cafename={el.name}

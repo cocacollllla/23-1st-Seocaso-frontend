@@ -1,16 +1,22 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 class SearchResult extends React.Component {
+  goToCafe = () => {
+    this.props.history.push(`../Product/${this.props.id}`);
+    console.log(this.props.history);
+  };
+
   render() {
-    const { image, cafeName, address } = this.props.search;
+    const { id, image, name, address } = this.props;
     return (
-      <li>
+      <li key={id} onClick={this.goToCafe}>
         <img alt="검색결과" src={image} />
-        <div>{cafeName}</div>
+        <div>{name}</div>
         <div>{address}</div>
       </li>
     );
   }
 }
 
-export default SearchResult;
+export default withRouter(SearchResult);

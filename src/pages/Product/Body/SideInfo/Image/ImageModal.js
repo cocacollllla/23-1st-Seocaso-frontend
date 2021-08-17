@@ -43,27 +43,22 @@ class ImageModal extends React.Component {
   render() {
     const { pageNum } = this.state;
     const { prvBtn, nextBtn } = this;
-    // let transNum = 400 * ((4 - 1) / 2);
-
-    // if (pageNum > 1) {
-    //   transNum = 400 * ((4 - 1) / 2) - 400 * (pageNum - 1);
-    // }
+    const { galleryList } = this.props;
     return (
-      <div className="modal-image">
+      <div className="modal-image" onClick={e => e.stopPropagation()}>
         <FontAwesomeIcon
           icon={faChevronCircleLeft}
           className="left"
           onClick={prvBtn}
         />
-        <div className="carousel-wrapper">
+        <div className="carousel-wrapper" onClick={this.props.modal}>
           <div
             className="image-container"
             style={{ transform: `translateX(-${pageNum * 100}%)` }}
           >
-            <img src="/images/cafe1.jpg" alt="슬라이드이미지" />
-            <img src="/images/cafe2.jpg" alt="슬라이드이미지" />
-            <img src="/images/cafe3.jpg" alt="슬라이드이미지" />
-            <img src="/images/cafe4.jpg" alt="슬라이드이미지" />
+            {galleryList.map(el => (
+              <img key={el.index} src={el.img} alt="슬라이드이미지" />
+            ))}
           </div>
         </div>
         <FontAwesomeIcon
