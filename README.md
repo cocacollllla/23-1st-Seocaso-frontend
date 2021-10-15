@@ -3,18 +3,6 @@
 
 영상 링크 : https://youtu.be/V38oqwMjnoI
 
-## Seocaso Project Teammate
-
-- F.E<br>
-  [소진수](https://github.com/joshhhso)<br>
-  [문주영](https://github.com/moonjuyoung1)<br>
-  [김다슬](https://github.com/cocacollllla/)<br>
-  <br>
-- B.E<br>
-  [최혜림](https://github.com/rimi0108)<br>
-  [장호준](https://github.com/bigfanoftim)<br> 
-  <br>
-
 ## What is Seocaso Project?
 
 - 영화란 영화는 다 모인 [왓챠피디아](https://www.watchapedia.com/) 클론 프로젝트
@@ -28,59 +16,28 @@
 
 - 개발기간 : 2021/8/2 ~ 2021/8/13
 - 개발 인원 : 프론트엔드 3명, 백엔드 2명
-- [B.E github 링크](https://github.com/wecode-bootcamp-korea/23-1st-Seocaso-backend)
-
-### 프로젝트 선정이유
-
-- 평소 자주 이용하던 사이트 였으며 영화 추천기능과 평점 기능을 구현하고 싶었습니다.
-- 유저에게 독단적인 정보 제공보다 다수의 정보를 수집하여<br>타 이용자에게 보다 나은 정보를 공유한다는 의미에 매력을 느꼈습니다.
-- 실제 고민에서 시작하여 아이디어로 발전하였고 이를 필요로하는 니치가 있다고 판단했습니다.
 
 ## 적용 기술 및 구현 기능
 
 ### 적용 기술
 
 > -Front-End : javascript, React.js framwork, sass<br>
-> -Back-End : Python, Django web framework, MySQL, Bcrypt, pyjwt<br>
 > -Common : POSTMAN, RESTful API
 
 ### 구현 기능
-- 바닐라 자바스크립트로 구현
 
-#### 회원가입 / 로그인페이지
+#### 메인페이지 
 
-- 회원가입 시 정규식을 통한 유효성 검사. (소문자, 대문자, 특수문자의 조합)
-- 로그인을 이후 토큰 발행, 계정 활성화
-- 계정 없을 시 바로 회원가입으로 이동할 수 있도록 구현
-- 로그인 / 회원가입 모달창 구현
+- SCSS를 이용한 Carousel 기능 구현
+- Fetch함수를 이용하여 리뷰, 별점순 리스트 구현
 
-#### 메인페이지 ◆
+#### 검색 페이지 
 
-- 바닐라 자바스크립트 캐러셀 구현(translateX)
-- 별점 순, 리뷰 순 데이터에 따른 리스트 구현
-- 검색바에서 키워드 검색시 검색결과 상단에 검색 값에 해당되는 카페 리스트 페이지로 이동.
-- 하단 푸터를 통한 사이트 설명
-
-#### 검색 페이지 ◆
-
-- 키워드(카페명, 지역명) 필터링.
-- 클릭시 상세 페이지로 이동.
+- Query parameter 를 통한 검색기능 구현과 history를 이용한 페이지 이동
 
 #### 상세페이지
 
-- 별점 기능 구현(currentTarget,nativeEvent)
-- 좋아요 기능 구현
-- 댓글 기능 구현
-- 이미지 모달창
-- 클릭시 상세 페이지로 이동
-- 데이터에 따른 그래프 자동기능 구현
-- 댓글 좋아요 기능 구현
-
-#### 마이페이지
-
-- 별점 순, 별점 역순, 필터링 기능 구현
-- 캐러셀 기능 구현
-- 이미지 클릭시 상세페이지 이동
+- 댓글 작성을 위한 모달창 기능 구현
 
 <br>
 
